@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.11.5-slim
+FROM --platform=linux/amd64 python:3.11-slim
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
@@ -36,6 +36,3 @@ RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 
 RUN python -m pip install -U pip==23.2.1 \
     && python -m pip install -U setuptools==68.1.2
-
-CMD ["poetry"]
-
