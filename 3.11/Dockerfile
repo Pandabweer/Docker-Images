@@ -22,15 +22,20 @@ RUN apt-get update && apt-get upgrade -y \
         bash \
         build-essential \
         curl \
-        git \
-    # Installing `poetry` package manager
-    # https://github.com/python-poetry/poetry
-    && curl -sSL 'https://install.python-poetry.org' | python - \
-    && poetry self add poetry-plugin-up \
-    # Cleaning cache
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
-    # Ensuring latest versions
-    && python -m pip install -U pip==23.2.1 \
+        git
+
+# Installing `poetry` package manager
+# https://github.com/python-poetry/poetry
+RUN curl -sSL 'https://install.python-poetry.org' | python - \
+    && poetry self add poetry-plugin-up 
+
+# Cleaning cache
+RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install -U pip==23.2.1 \
     && python -m pip install -U setuptools==68.1.2
+
+CMD ["poetry"]
 
