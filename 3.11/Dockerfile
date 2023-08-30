@@ -16,6 +16,9 @@ ENV PYTHONFAULTHANDLER=1 \
     POETRY_CACHE_DIR='/var/cache/pypoetry' \
     POETRY_HOME='/usr/local'
 
+RUN python -m pip install -U pip==23.2.1 \
+    && python -m pip install -U setuptools==68.1.2
+
 # System deps (we don't use exact versions because it is hard to update them)
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install --no-install-recommends -y \
@@ -33,6 +36,3 @@ RUN curl -sSL 'https://install.python-poetry.org' | python - \
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-RUN python -m pip install -U pip==23.2.1 \
-    && python -m pip install -U setuptools==68.1.2
