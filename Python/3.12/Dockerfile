@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.11-slim
+FROM --platform=linux/amd64 python:3.12-slim AS python-base
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
@@ -10,7 +10,7 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DEFAULT_TIMEOUT=100 \
     PIP_ROOT_USER_ACTION=ignore \
     # Poetry
-    POETRY_VERSION=1.7.0 \
+    POETRY_VERSION=1.7.1 \
     POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_CREATE=false \
     POETRY_CACHE_DIR='/var/cache/pypoetry' \
@@ -27,10 +27,15 @@ RUN apt-get update && apt-get upgrade -y \
         curl \
         git
 
+FROM python-base AS python-extension
+
 # Installing `poetry` package manager
 # https://github.com/python-poetry/poetry
 RUN curl -sSL 'https://install.python-poetry.org' | python - \
-    && poetry self add poetry-plugin-up 
+    && poetry self add poetry-plugin-up
+
+
+FROM python-extension AS python-image
 
 # Cleaning cache
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \

@@ -1,4 +1,4 @@
-FROM enriquebos/python-poetry:py-slim-3.12-poetry-1.7.0
+FROM enriquebos/python-poetry:py-slim-3.12-poetry-1.7.1
 
 WORKDIR /usr/src/app
 COPY . .
