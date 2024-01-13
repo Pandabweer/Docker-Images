@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dock-poetry"
+name = "docker-images-py-test"
 version = "0.1.0"
 description = "Test of the docker poetry image"
 authors = ["Enrique Bos <enriquebos7090@gmail.com>"]
@@ -7,14 +7,15 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-asyncpg = "^0.28.0"
+python = "^3.12"
+asyncpg = "^0.29.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.286"
-black = "^23.7.0"
-mypy = "^1.5.1"
+black = "^23.12.1"
+ruff = "^0.1.13"
+mypy = "^1.8.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
