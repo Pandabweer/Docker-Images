@@ -5,7 +5,7 @@
 
 # Setting the preferred versions, exluding patches/bug fixes.
 ARG PYTHON_VER=3.12
-ARG POETRY_VER=1.7
+ARG POETRY_VER=1.8
 
 # Setting the platform ensures the same results on every platform.
 # It's also preferred since linux/amd64 is what most Docker containers run on in the cloud.
@@ -59,10 +59,10 @@ RUN python -m pip install -U setuptools pip
 # Getting usable packages.
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install --no-install-recommends -y \
-        bash \
-        build-essential \
-        curl \
-        git
+    bash \
+    build-essential \
+    curl \
+    git
 
 # Installing `poetry` package manager.
 # https://github.com/python-poetry/poetry
