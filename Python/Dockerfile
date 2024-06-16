@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.6
+# syntax=docker/dockerfile:1.8
 # Set the prefered syntax file to assure the same build
 # Learn more about Docker syntax here -> https://docs.docker.com/build/dockerfile/frontend/
 # Learn more about Docker references at -> https://docs.docker.com/go/dockerfile-reference/

@@ -1,4 +1,4 @@
-FROM enriquebos/python-poetry:py-3.12-poetry-1.7
+FROM enriquebos/python-poetry:py-3.12-poetry-1.8
 
 WORKDIR /app
 COPY . .
